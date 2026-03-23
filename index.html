@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitForge - Workout Planner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">💪 FitForge</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Workout builder</a></li>
+                <li><a href="progress.html">Progress Tracker</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+
+            <!-- Mobile Navigation Toggle -->
+            <button class="nav-toggle" area-label="Toggle navigation">☰</button>
+    </nav>
+    <header class="hero">
+        <h1>Build your workout</h1>
+        <p> Select your goal, choose your level, and let FitForge create a personalized plan for you.</p>
+    </header>
+
+    <main class="container">
+        <section class="builder-form card">
+            <h2>Workout settings</h2>
+
+            <!-- Goal Selection dropdown -->
+            <div class="form-group">
+                <label for="goal">Fitness Goal</label>
+                <select id="goal">
+                    <option value="">-- Select your goal --</option>  
+                    <option value="strength">💪 Strength</option>    
+                    <option value="cardio">🏃 Cardio</option>       
+                    <option value="weight_loss">⚖️ Weight Loss</option>  
+                </select>
+            </div>
+            
+            <!-- Experience Selection dropdown -->
+            <div class="form-group">
+                <label for="level">Experience level</label>
+                <select id="level">
+                    <option value="">-- Select your level --</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="expert">Expert</option>
+                </select>
+            </div>
+
+            <!-- Target Muscle Group -->
+            <div class="form-group">
+                <label for="muscle">Target Muscle Group</label>
+                <select id="muscle">
+                    <option value="">-- Select Muscle --</option>
+                    <option value="abdominals">Abdominals</option>
+                    <option value="biceps">Biceps</option>
+                    <option value="chest">Chest</option>
+                    <option value="forearms">Forearms</option>
+                    <option value="glutes">Glutes</option>
+                    <option value="hamstrings">Hamstrings</option>
+                    <option value="lats">Lats</option>
+                    <option value="quadriceps">Quadriceps</option>
+                    <option value="shoulders">Shoulders</option>
+                    <option value="triceps">Triceps</option>
+                </select>
+            </div>
+
+            <button id="generate-btn" class="btn btn-primary">Generate Workout</button>
+
+            <!-- Error message paragraph - starts empty, js fills it if there's a problem -->
+            <p id="form-error" class="error-msg"></p>
+        </section>
+
+        <!-- shows all workout the user has saved to local storage-->
+        <section id="saved-workouts" class="saved-section">
+            <h2>Saved Workouts</h2>
+
+            <!-- this message pops up if there are no saved workouts -->
+            <p id="no-saved-msg">No saved workouts yet. Generate a workout to get started!</p>
+
+            <!-- saved workout cards will be inserted here by JavaScript -->
+            <div id="saved-list" class="exercise-grid"></div>
+
+            <!-- clear all button- only visible when there are saved workouts-->
+            <button id="clear-saved-btn" class="btn btn-danger hidden">Clear All saved workouts</button>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 FitForge. Built by Folly Teko.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
