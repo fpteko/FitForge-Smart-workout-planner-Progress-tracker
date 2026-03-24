@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitForge - Progress Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">💪 FitForge</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Workout Builder</a></li>
+            <li><a href="progress.html" class="active">Progress Tracker</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    </nav>
+
+    <header class="hero">
+        <h1>Track Your Proress</h1>
+        <p>Log each workout session and watch your improvement over time</p>
+    </header>
+
+    <main class="container">
+        <section class="stats-row">
+            <!-- Show how many workout the user has logged -->
+            <div class="stat-card card">
+                <span class="stat-number" id="total-workouts">0</span>
+                <span class="stat-label">Workouts Logged</span>
+            </div>
+            <!-- This is the Total volume (sets x reps x weight) across all workouts-->
+            <div class="stat-card card">
+                <span class="stat-number" id="total-volume">0</span>
+                <span class="stat-label">Total Volume (lbs)</span>
+            </div>
+            <!-- How many days in a row the user has worked out -->
+            <div class="stat-card card">
+                <span class="stat-number" id="current-streak">0</span>
+                <span class="stat-label">Day Streak</span>
+            </div>
+        </section>
+
+        <section class="log-form card">
+            <h2>Log a Workout</h2>
+            <div class="form-group">
+                <label for="log-exercise">Exercise Name</label>
+                <input type="text" id="log-exercise" placeholder="e.g. Bench Press">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="log-sets">Sets</label>
+                    <input type="number" id="log-sets" min="1" placeholder="10">
+                </div>
+                <div class="form-group">
+                    <label for="log-reps">Reps</label>
+                    <input type="number" id="log-reps" min="1" placeholder="3">
+                </div>
+                <div class="form-group">
+                    <label for="log-weight">Weight (lbs)</label>
+                    <input type="number" id="log-weight" min="0" placeholder="135">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="log-date">Date</label>
+                <input type="date" id="log-date">
+            </div>
+
+            <button id="log-btn" class="btn btn-primary">Log Workout</button>
+            <p id="log-error" class="error-msg hidden"></p>
+            <p id="log-success" class="success-msg hidden"></p>
+        </section>
+    
+        <section class="charts-section">
+            <!-- Chart 1:Line chart shows volume lifted over time -->
+            <div class="chart-wrapper card">
+                <h2>Volume Over Time</h2>
+                <canvas id="volumeChart"></canvas> <!-- canvas is where chart.js draws the chart -->
+            </div>
+            <!-- Chart 2: Bar chart showing how many workouts per week -->
+            <div class="chart-wrapper card">
+                <h2>Volume Per Week</h2>
+                <canvas id="frequencyChart"></canvas>
+            </div>
+        </section>
+
+        <!-- a table showing all logged workouts with details -->
+        <section class="log-history card">
+            <h2>Workout History</h2>
+            <p id="no-logs-msg" class="muted">No workout logged yet. Start tracking above!</p>
+            
+            <div class="table-wrapper">
+                <table id="log-table" class="hidden">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Exercise</th>
+                            <th>Sets</th>
+                            <th>Reps</th>
+                            <th>Weight</th>
+                            <th>Volume</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="log-table-body"></tbody>
+                </table>
+            </div>
+
+            <button id="clear-logs-btn" class="btn btn-danger hidden">Clear All Logs</button>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 FitForge. Built by Folly Teko.</p>
+    </footer>
+    <script src="js/tracker.js"></script>
+</body>
+</html>
