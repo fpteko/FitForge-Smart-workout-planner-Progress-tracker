@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: arial, sans-serif;
+    background-color: #0d0d0d;
+    color: #f0f0f0;
+    line-height: 1.6;;
+}
+
+a {
+    color: #39ff14;
+    text-decoration: none; 
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;       
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #1a1a2e;
+    border-bottom: 1px solid #2a2a3e;
+    position: sticky;
+    top: 0;
+}
+
+.nav-brand {
+    font-size: 24px;
+    font-weight: 700;
+    color: #39ff14;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #a0a0b0;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color:#39ff14;
+    background-color: #1b3a1b;
+    text-decoration: none;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color:#f0f0f0;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.hero {
+    text-align: center;
+    padding: 50px 20px 30px;
+}
+
+.hero h1 {
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.hero p {
+    color: #a0a0b0;
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 50px;
+}
+
+.card {
+    background-color: #1a1a2e;
+    border: 1px solid #2a2a3e;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 30px;
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Labels above form inputs */
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #a0a0b0;
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #2a2a3e;
+    border-radius: 8px;
+    background-color: #111122;
+    color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+    outline: none;
+    border-color: #39ff14;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #39ff14;
+    color: #0d0d0d;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.btn-primary:hover {
+    background-color: #32e012;
+}
+
+.btn-accent {
+    background-color: #39ff14;
+    color: #0d0d0d;
+    margin-top: 15px;
+}
+
+.btn-accent:hover {
+    background-color: #32e012;
+}
+
+.btn-danger {
+    background-color: #ff4757;
+    color: #fff;
+    margin-top: 15px;
+}
+
+.btn-danger:hover {
+    background-color: #e03e4d;
+}
+
+.error-msg {
+    color: #ff4757;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.success-msg {
+    color: #2ed573;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.muted {
+    color: #a0a0b0;
+    font-style: italic;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.exercise-card {
+    background-color: #22223a;
+    border: 1px solid #2a2a3e;
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.exercise-card:hover {
+    border-color: #39ff14;
+}
+
+.exercise-card h3 {
+    color: #39ff14;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.exercise-card .tag {
+    display: inline-block;
+    background-color: #1b3a1b;
+    color: #39ff14;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+.exercise-card p {
+    color: #a0a0b0;
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.exercise-card .instructions {
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+.saved-section {
+    margin-top: 30px;
+}
+
+.saved-section h2 {
+    margin-bottom: 8px;
+}
+
+
