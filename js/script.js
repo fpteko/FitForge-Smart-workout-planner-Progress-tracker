@@ -96,11 +96,116 @@ async function handleGenerate() {
 
     } catch (error) {
         // If anything went wrong (network error, bad API key, etc.), show an error
-        console.error("Fetch error:", error); // Log the error to the browser console
+        console.error("Fetch error:", error);
         formError.textContent = "❌ Could not fetch exercises. Check your API key or try again.";
 
     } finally {
         generateBtn.textContent = "Generate Workout";
         generateBtn.disabled = false;
     }
+}
+
+function displayExercises(exercises) {
+    exerciseCards.innerHTML = "";
+    exerciseCards.forEach(function (exercise) {
+        const card = document.createElement("div");
+        card.classList.add("exercise-card");
+
+        card.innerHTML = 
+            "<h3>" + saanitize(exercise.name) + "</h3>" +
+            "<span class='tag'>" + sanitize(exercise.type) + "</span>" +
+                "<span class='tag'>" + sanitize(exercise.difficulty) + "</span>" +
+            "</div>" +
+            (exercise.equipment ? "<p><strong>Equipment:</strong> " + sanitize(exercise.equipment) + "</p>" : "") +
+            "<p class='instructions'>" + sanitize(exercise.instructions) + "</p>";
+        exerciseCards.appendChild(card);
+    });
+
+      // Show the results section and save button (remove the "hidden" class)
+    resultsSection.classList.remove("hidden");
+    saveWorkoutBtn.classList.remove("hidden");
+    saveMsg.classList.add("hidden"); // Hide any old "saved!" message
+}
+
+function sanitize(str) {
+    if (!str) return ""; // If the string is empty or undefined, return empty string
+    const div = document.createElement("div");      // Create a temporary div
+    div.appendChild(document.createTextNode(str)); // Add the text as plain text (not HTML)
+    return div.innerHTML;                         
+}
+
+function handleSaveWorkout() {
+    if (currentExercises.length === 0) return; // this make it not save if there is no workout generated
+    const workout = {
+        id: Date.now(),   // Use the current time as a unique ID
+        date: new Date().toLocaleDateString(), // Today's date as a readable string
+        goal: goalSelect.value,
+        level: levelSelect.value, 
+        muscle: muscleSelect.value, 
+        exercises: currentExercises.map(function (ex) {
+            // .map() creates a new array with just the info we want from each exercise
+            return {
+                name: ex.name,
+                type: ex.type,
+                muscle: ex.muscle,
+                difficulty: ex.difficulty,
+                equipment: ex.equipment || "None"
+            };
+        })
+    };
+
+    const saved = getSavedWorkouts(); // Get the current list of saved workouts from Local Storage
+    saved.push(workout); // Add the new workout to the list
+    localStorage.setItem("fitforge_workouts", JSON.stringify(saved));
+    saveMsg.classList.remove("hidden");
+    saveMsg.textContent = "✅ Workout saved!";
+
+    loadSavedWorkouts();
+}
+
+function getSavedWorkouts() {
+    // Try to get the data from Local Storage
+    const data = localStorage.getItem("fitforge_workouts");
+    if (!data) return [];
+    try {
+        const parsed = JSON.parse(data);
+        return Array.isArray(parsed) ? parsed : []; // If it's an array, return it. Otherwise return empty array.
+    } catch (e) {
+        return [];// If the data is corrupted, return empty array
+    }
+}
+
+function loadSavedWorkouts() {
+    const saved = getSavedWorkouts();
+    savedList.innerHTML = "";
+    if (saved.length === 0) {
+        noSavedMsg.classList.remove("hidden");  // Show "No saved workouts" text
+        clearSavedBtn.classList.add("hidden");  // Hide the clear button
+        return;
+    }
+    // If we have saved workouts, hide the "no saved" message and show the clear button
+    noSavedMsg.classList.add("hidden");
+    clearSavedBtn.classList.remove("hidden");
+
+    // Loop through each saved workout and create a card for it
+    saved.forEach(function (workout) {
+        const card = document.createElement("div");
+        card.classList.add("exercise-card");
+        // Get all exercise names as a comma-separated string
+        const exerciseNames = workout.exercises
+            .map(function (ex) { return sanitize(ex.name); }) // Get each name
+            .join(", "); // Join them with commas
+
+        card.innerHTML =
+            "<h3>" + sanitize(workout.goal) + " – " + sanitize(workout.muscle) + "</h3>" +
+            "<div>" +
+                "<span class='tag'>" + sanitize(workout.level) + "</span>" +
+                "<span class='tag'>" + sanitize(workout.date) + "</span>" +
+            "</div>" +
+            "<p><strong>Exercises:</strong> " + exerciseNames + "</p>" +
+            "<button class='btn btn-danger' style='margin-top:0.5rem; padding:0.4rem 0.8rem; font-size:0.8rem;' " +
+                "onclick='deleteSavedWorkout(" + workout.id + ")'>Remove</button>"; // onclick runs deleteSavedWorkout() when the Remove button is clicked
+
+        savedList.appendChild(card);
+    });
 }
