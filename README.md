@@ -108,6 +108,3 @@ A static informational page explaining the app.
 
 ChatGPT was used to help plan component structure, refactor functions, and generate initial code scaffolding. All code was reviewed, understood, and customized by the developer.
 
----
-
-&copy; 2026 FitForge. Built for learning & progress.
