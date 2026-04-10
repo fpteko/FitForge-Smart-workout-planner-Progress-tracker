@@ -2,7 +2,6 @@
 
 FitForge is a fitness web app that generates personalized workout plans and tracks your progress over time with charts and stats. Built with HTML, CSS, and vanilla JavaScript.
 
-![Dark Mode](https://img.shields.io/badge/theme-dark%20mode-0d0d0d)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
